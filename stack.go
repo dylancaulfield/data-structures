@@ -1,31 +1,36 @@
-package data_structures
+package structures
 
 import (
-	"go/types"
 	"sync"
 )
 
 type Stack struct {
-	items []types.Type
-	lock  sync.RWMutex
+	items []interface{}
+	mutex  sync.RWMutex
 }
 
-func (s *Stack) Pop() (item types.Type) {
+func (s *Stack) Pop() (item interface{}) {
 
-	s.lock.Lock()
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
+
+	if len(s.items) == 0 {
+		
+		return nil
+		
+	}
 
 	s.items, item = s.items[:len(s.items)-1], s.items[len(s.items)-1]
 
-	s.lock.Unlock()
+	return
 
 }
 
-func (s *Stack) Push(item types.Type) {
+func (s *Stack) Push(item interface{}) {
 
-	s.lock.Lock()
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
 
 	s.items = append(s.items, item)
-
-	s.lock.Unlock()
 
 }
