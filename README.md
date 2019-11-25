@@ -1,2 +1,2 @@
-# sorting-algorithms
-Sorting algorithms implemented in Go
+# data-structures
+Data structures implemented in Go
