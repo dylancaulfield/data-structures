@@ -7,7 +7,7 @@ type Queue struct {
 	mutex sync.RWMutex
 }
 
-func (q *Queue) Pop() (item interface{}) {
+func (q *Queue) DeQueue() (item interface{}) {
 
 	q.mutex.Lock()
 	defer q.mutex.Unlock()
@@ -24,7 +24,7 @@ func (q *Queue) Pop() (item interface{}) {
 
 }
 
-func (q *Queue) Push(item interface{}) {
+func (q *Queue) EnQueue(item interface{}) {
 
 	q.mutex.Lock()
 	defer q.mutex.Unlock()
